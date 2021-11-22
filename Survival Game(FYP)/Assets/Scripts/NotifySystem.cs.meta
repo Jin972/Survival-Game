@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e402c8a6b3d709a4bb214fb2ed7f9f2e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - notifyParent: {instanceID: 0}
+  - simpleNotifyObject: {fileID: 5160927781056733043, guid: 788a9e089a24c484b945ca38e795911f,
+      type: 3}
+  - notifyContent: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

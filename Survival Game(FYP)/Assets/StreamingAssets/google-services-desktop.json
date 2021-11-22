@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "395261963183",
+    "firebase_url": "https://survival-game-firebase-default-rtdb.firebaseio.com",
+    "project_id": "survival-game-firebase",
+    "storage_bucket": "survival-game-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395261963183:android:6e16beaf90d5a69e655d5a",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.SurvivalGameFYP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395261963183-b9868863of4ve170r15305nf0840mvda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxVcuYxGZqAZ_bKLQUOkTqRW-aaDZ_rcI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395261963183-b9868863of4ve170r15305nf0840mvda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
