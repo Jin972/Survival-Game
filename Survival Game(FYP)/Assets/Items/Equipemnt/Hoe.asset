@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: Hoe
   m_EditorClassIdentifier: 
   name: Hoe
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c563298ff29717b4882bd5ef98e46d9c, type: 3}
   isDefaultItem: 0
   isMany: 0
-  itemGameObject: {fileID: 0}
+  itemGameObject: {fileID: 7960078297227936164, guid: f88255f90dfc3a943b1fffb79f7ab3b3,
+    type: 3}
   decreaseRate: 0
-  equipSlot: 0
-  equipmentType: 0
+  equipSlot: 5
+  equipmentType: 2
   mesh: {fileID: 0}
   meshGameObject: {fileID: 0}
-  weapon: {fileID: 0}
+  weapon: {fileID: 7960078297227936164, guid: f88255f90dfc3a943b1fffb79f7ab3b3, type: 3}
   covereMeshRegion: 
   armorModifier: 0
-  damageModifier: 0
+  damageModifier: 10
   attckRangeModifier: 0

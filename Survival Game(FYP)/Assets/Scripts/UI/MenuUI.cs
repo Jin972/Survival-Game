@@ -18,6 +18,8 @@ public class MenuUI : MonoBehaviour
     Inventory inventory;
     LoadSence load;
 
+    public InventoryUI ui;
+
     private void Start()
     {
         manager = PlayerManager.instance;
@@ -48,12 +50,14 @@ public class MenuUI : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
+        ui.UINumber -= 1;
     }
 
     private void Pause()
     {
         pauseMenuUI.SetActive(true);
         GameIsPaused = true;
+        ui.UINumber += 1;
     }
 
     public void LoadMenu()

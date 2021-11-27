@@ -16,5 +16,6 @@ MonoBehaviour:
   currentEquipment: []
   currentHouse:
   - {fileID: 1747140728864550297, guid: 7cf8df4bc213f8c4b93ae7c450514aa6, type: 3}
-  - {fileID: 6276111246114021860, guid: a6c73db5e0cb7e448a411da70550b763, type: 3}
+  - {fileID: 1223833342783172653, guid: a6c73db5e0cb7e448a411da70550b763, type: 3}
   - {fileID: 487460816773623267, guid: 846a04da37814bb44a83dbfd9c5ceb64, type: 3}
+  - {fileID: 6466190867276748689, guid: 91e6819b60f8463469bb6d4061453368, type: 3}

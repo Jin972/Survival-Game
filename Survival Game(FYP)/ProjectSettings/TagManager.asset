@@ -9,6 +9,7 @@ TagManager:
   - Celling_SP
   - CinemachineTarget
   - TargetMesh
+  - MainUI
   layers:
   - Default
   - TransparentFX

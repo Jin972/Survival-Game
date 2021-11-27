@@ -31,11 +31,14 @@ public class Inventory : MonoBehaviour, ISerializationCallbackReceiver
     public int space = 20;
     public List<ListItem> items = new List<ListItem>();
 
+    NotifySystem notify;
+
     bool IsLoad = true;
     RealTimeDatabase db;
     private void Start()
     {
         db = RealTimeDatabase.instance;
+        notify = NotifySystem.instance;
         //Load();
         LoadData();
     }
@@ -56,6 +59,8 @@ public class Inventory : MonoBehaviour, ISerializationCallbackReceiver
             if (items.Count >= space)
             {
                 Debug.Log("Not enough room.");
+                notify.SimpleNotify("Not enough room.");
+
                 return false;
             }
             items.Add(new ListItem(database.GetItemID[item], item));

@@ -24,10 +24,17 @@ public class ItemRequirementSlot : MonoBehaviour
 
     public void AddItem(MaterialsRequest newItem)
     {
-        item = newItem.item;        
+        item = newItem.item;
 
-
-        Amount.text = CountOccurenceOfValue(inventory.items, item) + "/" + newItem.Amount;
+        if (inventory != null)
+        {
+            Amount.text = CountOccurenceOfValue(inventory.items, item) + "/" + newItem.Amount;
+        }
+        else {
+            Amount.text = "0/" + newItem.Amount;
+        }
+              
+        
 
         icon.sprite = newItem.item.icon;
         icon.enabled = true;

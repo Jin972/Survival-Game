@@ -17,15 +17,18 @@ public class CircleMenu : MonoBehaviour
     public int CurMenuItem;
     private int OldMenuItem;
 
-    public BuildingSystem buildingSystem;
+    BuildingSystem buildingSystem;
 
     Inventory inventory;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         inventory = Inventory.instance;
         menuItems = buttons.Count;
+        buildingSystem = BuildingSystem.instance;
+
         foreach(MenuButton button in buttons)
         {
             button.sceneImage.color = button.NormalColor;

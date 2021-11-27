@@ -26,4 +26,4 @@ MonoBehaviour:
   covereMeshRegion: 
   armorModifier: 0
   damageModifier: 10
-  attckRangeModifier: 1
+  attckRangeModifier: 0

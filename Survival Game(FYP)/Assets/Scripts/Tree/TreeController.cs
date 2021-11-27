@@ -6,6 +6,18 @@ public class TreeController : CharaterStats
 {
     public GameObject[] item;
 
+    [SerializeField]
+    Item[] items;
+
+    Inventory inventory;
+    NotifySystem notify;
+
+    private void Start()
+    {
+        inventory = Inventory.instance;
+        notify = NotifySystem.instance;
+    }
+
     public void DropItem()
     {
         for (int i = 0; i < item.Length; i++)
@@ -20,6 +32,10 @@ public class TreeController : CharaterStats
 
         DropItem();
         Destroy(gameObject);
+        for(int i = 0; i < items.Length; i++)
+        {
+            inventory.Add(items[i]);
+        }
+        notify.SimpleNotify("+" + items.Length + " Wood");
     }
-  
 }

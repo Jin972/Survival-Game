@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CharaterStats))]
@@ -19,7 +20,6 @@ public class HealthUI : MonoBehaviour
     void Start()
     {
         cam = Camera.main.transform;
-
         foreach (Canvas c in FindObjectsOfType<Canvas>())
         {
             if(c.renderMode == RenderMode.WorldSpace)
@@ -30,7 +30,7 @@ public class HealthUI : MonoBehaviour
                 break;
             }
         }
-
+        
         GetComponent<CharaterStats>().OnHealthChanged += OnHealthChanged;
     }
 
@@ -56,7 +56,7 @@ public class HealthUI : MonoBehaviour
         {
             ui.position = targets.position;
             ui.forward = -cam.forward;
-
+            
             if (Time.time - lastMadeVisibleTime > visibleTime)
             {
                 ui.gameObject.SetActive(false);

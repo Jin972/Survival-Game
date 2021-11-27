@@ -84,9 +84,9 @@ public class CraftingItemInfo : MonoBehaviour
     void ClearItems(List<MaterialsRequest> listCompare)
     {
         for (int i = 0; i < listCompare.Count; i++)
-        {
-            for (int y = 0; y < listCompare[i].Amount; i++)
-            {
+        {           
+            for (int y = 0; y < listCompare[i].Amount; y++)
+            {             
                 inventory.Remove(listCompare[i].item);
             }
         }

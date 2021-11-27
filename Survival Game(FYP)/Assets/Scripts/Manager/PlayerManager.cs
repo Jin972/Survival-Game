@@ -14,14 +14,16 @@ public class PlayerManager : MonoBehaviour
         instance = this;
     }
     #endregion
+    
+    
     RealTimeDatabase db;
+    public GameObject player;
 
     private void Start()
     {
         db = RealTimeDatabase.instance;
     }
-    public GameObject player;
-
+    
     public void KillPlayer()
     {
         StatusDefault();

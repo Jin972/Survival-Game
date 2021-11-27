@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
 {
@@ -38,8 +39,6 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
 
     public bool IsBuilding;
 
-    //public MCFace dir;
-
     public GameObject objectMenu;
 
     private bool chooseObj;
@@ -53,7 +52,10 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
     public bool isRemove;
 
     [SerializeField]
-    private CircleMenu menu;
+    private CircleMenu menu; //Menu
+
+    [SerializeField]
+    InventoryUI ui; //To set camera rotation
 
     RealTimeDatabase db;
 
@@ -89,13 +91,7 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
         
         if (Input.GetButtonDown("ShowMenu"))
         {
-            if (oldHit.point != default)
-            {
-                ColorDefault();
-            }
-            objectMenu.SetActive(!objectMenu.activeSelf);
-            chooseObj = true;
-            
+            TriggerMenu();
         }
 
         if (Input.GetButtonDown("Fire2") && currentPreview != null)
@@ -116,10 +112,29 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
 
     }
 
+    public void TriggerMenu()
+    {
+        if (oldHit.point != default)
+        {
+            ColorDefault();
+        }
+        objectMenu.SetActive(!objectMenu.activeSelf);
+        chooseObj = true;
+        if (objectMenu.activeSelf == true)
+        {
+            ui.UINumber += 1;
+        }
+        else
+        {
+            ui.UINumber -= 1;
+        }
+    }
+
     public void TurnOffMenu()
     {
         objectMenu.SetActive(false);
         chooseObj = false;
+        ui.UINumber -= 1;
     }
 
     public void ChangeCurrentBuilding(int cur)
@@ -187,8 +202,11 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
 
     private void StopPreview()//This is a bad name, It should be called something like BuildIt(). This will actually build your preview in the world
     {
-        Destroy(currentPreview.gameObject);
-        currentPreview = null;
+        if(currentPreview != null)
+        {
+            Destroy(currentPreview.gameObject);
+            currentPreview = null;
+        } 
     }
 
     public void Build()
@@ -209,7 +227,6 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
             Rotation[2] = currentRot.z;
             buildingDatas.Add(new BuildingData(database.GetHouseItemID[currentObjects.prefab], currentObjects.prefab, Position, Rotation) );
             SaveData();
-            //Save();
         }
     }
 
@@ -329,7 +346,7 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
 
     void SaveData()
     {
-        if(IsLoad == false)
+        if(IsLoad == false && SceneManager.GetActiveScene().buildIndex == 1) //Check current map is "Main" scene or not
         {
             List<building> tempBuild = new List<building>();
             for (int i = 0; i < buildingDatas.Count; i++)
@@ -343,33 +360,36 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
 
     void LoadData()
     {
-        IsLoad = true;
-        try
+        if (SceneManager.GetActiveScene().buildIndex == 1) //Check current map is "Main" scene or not
         {
-            string json = db.LoadData("Buildings");
-            buildingData extractedData = JsonUtility.FromJson<buildingData>(json);
-
-            for (int i = 0; i < extractedData.buildings.Count; i++)
+            IsLoad = true;
+            try
             {
-                Vector3 position;
-                position.x = extractedData.buildings[i].position[0];
-                position.y = extractedData.buildings[i].position[1];
-                position.z = extractedData.buildings[i].position[2];
+                string json = db.LoadData("Buildings");
+                buildingData extractedData = JsonUtility.FromJson<buildingData>(json);
 
-                Vector3 rotation;
-                rotation.x = extractedData.buildings[i].rotation[0];
-                rotation.y = extractedData.buildings[i].rotation[1];
-                rotation.z = extractedData.buildings[i].rotation[2];
+                for (int i = 0; i < extractedData.buildings.Count; i++)
+                {
+                    Vector3 position;
+                    position.x = extractedData.buildings[i].position[0];
+                    position.y = extractedData.buildings[i].position[1];
+                    position.z = extractedData.buildings[i].position[2];
 
-                Instantiate(database.GetHouseItem[extractedData.buildings[i].id], position, Quaternion.Euler(rotation), buildingParent);
+                    Vector3 rotation;
+                    rotation.x = extractedData.buildings[i].rotation[0];
+                    rotation.y = extractedData.buildings[i].rotation[1];
+                    rotation.z = extractedData.buildings[i].rotation[2];
+
+                    Instantiate(database.GetHouseItem[extractedData.buildings[i].id], position, Quaternion.Euler(rotation), buildingParent);
+                }
             }
-        }
-        catch
-        {
-            print("Nothing to load!");
-        }
+            catch
+            {
+                print("Nothing to load!");
+            }
 
-        IsLoad = false;
+            IsLoad = false;
+        } 
     }
 
     //public static MCFace GetHitFace(RaycastHit _hit)

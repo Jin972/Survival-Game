@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3995773005735066588}
   - component: {fileID: 3995773005736163612}
   - component: {fileID: 3995773005731793278}
+  - component: {fileID: 6497440229564194006}
+  - component: {fileID: 4197713984062531398}
   m_Layer: 0
   m_Name: Rocks
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3995773005733898206}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -29.48, y: 0, z: -7.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -96,3 +98,41 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300006, guid: 36fab8a650f78e34a8a757675f3acd32, type: 3}
+--- !u!114 &6497440229564194006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3995773005733898206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b7925ca616382408bc8b703bf7222b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
+  currentHealth: 0
+  damage:
+    baseVale: 0
+  armor:
+    baseVale: 0
+  attackRange:
+    baseVale: 0
+  item: []
+  items:
+  - {fileID: 11400000, guid: 298eb55f7fb2e7949883b3881f691fbb, type: 2}
+  - {fileID: 11400000, guid: 298eb55f7fb2e7949883b3881f691fbb, type: 2}
+--- !u!114 &4197713984062531398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3995773005733898206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e81269d1d1d2a445b0799641d7eabf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  interactionTransform: {fileID: 3995773005733739518}

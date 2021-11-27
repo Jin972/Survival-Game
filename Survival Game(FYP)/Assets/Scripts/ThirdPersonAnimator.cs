@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ThirdPersonAnimator : MonoBehaviour
 {
+    public AnimationClip replaceableAttackAnin;
     public AnimationClip[] defaultAttackAnimSet;
     protected AnimationClip[] currentAttackAnimSet;
 
     protected Animator animator;
     protected CharacterCombat combat;
+
+    public AnimatorOverrideController overrideController;
 
     public WeaponAnimation[] weaponAnimations;
     Dictionary<Equipment, AnimationClip[]> weaponAnimationDict;
@@ -18,6 +21,12 @@ public class ThirdPersonAnimator : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         combat = GetComponent<CharacterCombat>();
+
+        if (overrideController == null)
+        {
+            overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        }
+        animator.runtimeAnimatorController = overrideController;
 
         currentAttackAnimSet = defaultAttackAnimSet;
         combat.OnAttack += OnAttack;
@@ -40,13 +49,15 @@ public class ThirdPersonAnimator : MonoBehaviour
     protected virtual void OnAttack()
     {
         animator.SetTrigger("isAttack");
+        int attackIndex = Random.Range(0, currentAttackAnimSet.Length);
+        overrideController[replaceableAttackAnin.name] = currentAttackAnimSet[attackIndex];
     }
 
     void OnEquipmentChanged(Equipment newItem, Equipment oldIten)
     {
         if (newItem != null && newItem.equipSlot == EquipmentSlot.Weapon)
         {
-            animator.SetLayerWeight(1, 1);
+            //animator.SetLayerWeight(1, 1);
             if (weaponAnimationDict.ContainsKey(newItem))
             {
                 currentAttackAnimSet = weaponAnimationDict[newItem];
@@ -54,11 +65,9 @@ public class ThirdPersonAnimator : MonoBehaviour
         }
         else if (newItem == null && oldIten.equipSlot == EquipmentSlot.Weapon)
         {
-            animator.SetLayerWeight(1, 0);
+            //animator.SetLayerWeight(1, 0);
             currentAttackAnimSet = defaultAttackAnimSet;
         }
-
-
     }
 
     [System.Serializable]

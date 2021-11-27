@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStat : CharaterStats
 {
@@ -205,7 +206,7 @@ public class PlayerStat : CharaterStats
     // Sava Data by Firebase
     public void SaveData()
     {
-        if(isLoad == false)
+        if(isLoad == false && SceneManager.GetActiveScene().buildIndex != 2) // Check current map is "Main"(Home) scene or not
         {
             float[] position = new float[3];
             position[0] = transform.position.x;
@@ -222,29 +223,33 @@ public class PlayerStat : CharaterStats
     //Load Data by Firebase
     public void LoadData()
     {
-        isLoad = true;
-        try
+        if(SceneManager.GetActiveScene().buildIndex != 2) //Check current map is "Map" scene or not
         {
-            string json = db.LoadData("Player Status");
-            UserData data = JsonUtility.FromJson<UserData>(json);
-            currentHealth = data.health;
-            thirst = data.thirst;
-            hunger = data.hunger;
+            isLoad = true;
+            try
+            {
+                string json = db.LoadData("Player Status");
+                UserData data = JsonUtility.FromJson<UserData>(json);
+                currentHealth = data.health;
+                thirst = data.thirst;
+                hunger = data.hunger;
 
-            Vector3 position = transform.position;
-            position.x = position[1];
-            position.y = position[1];
-            position.z = position[2];
+                Vector3 position = transform.position;
+                position.x = position[1];
+                position.y = position[1];
+                position.z = position[2];
 
-            transform.position = position;
+                transform.position = position;
+            }
+            catch
+            {
+                print("Nothing to load");
+            }
+
+            isLoad = false;
         }
-        catch
-        {
-            print("Nothing to load");
-        }
-        
-        isLoad = false;
     }
+        
 }
 
 [System.Serializable]

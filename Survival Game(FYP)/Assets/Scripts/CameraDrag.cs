@@ -4,23 +4,41 @@ using UnityEngine;
 
 public class CameraDrag : MonoBehaviour
 {
-    public float dragSpeed = 2;
-    private Vector3 dragOrigin;
+    public float speed = 20f;
+    public float panBorderThickness = 10f;
 
+    public float horizontalLimit = 10f;
+    public float verticalLimit = 10f;
+
+    [SerializeField]
+    InventoryUI ui;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            dragOrigin = Input.mousePosition;
-            return;
+        Vector3 pos = transform.position;
+
+        if (Input.GetKey(KeyCode.W) /*|| Input.mousePosition.y >= Screen.height - panBorderThickness*/) {
+            pos.z += speed * Time.deltaTime;   
         }
 
-        if (!Input.GetMouseButton(0)) return;
+        if (Input.GetKey(KeyCode.S) /*|| Input.mousePosition.y <= panBorderThickness*/)
+        {
+            pos.z -= speed * Time.deltaTime;
+        }
 
-        Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-        Vector3 move = new Vector3(pos.x * dragSpeed, 0, pos.y * dragSpeed);
+        if (Input.GetKey(KeyCode.A) /*|| Input.mousePosition.x >= Screen.height - panBorderThickness*/)
+        {
+            pos.x -= speed * Time.deltaTime;
+        }
 
-        transform.Translate(move, Space.World);
+        if (Input.GetKey(KeyCode.D) /*|| Input.mousePosition.x <= panBorderThickness*/)
+        {
+            pos.x += speed * Time.deltaTime;
+        }
+
+        pos.x = Mathf.Clamp(pos.x, -horizontalLimit, horizontalLimit);
+        pos.z = Mathf.Clamp(pos.z, -verticalLimit, verticalLimit);
+
+        transform.position = pos;
     }
 }

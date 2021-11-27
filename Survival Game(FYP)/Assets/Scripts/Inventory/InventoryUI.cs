@@ -19,8 +19,15 @@ public class InventoryUI : MonoBehaviour
     public GameObject CloseButton;
     public GameObject TreasureUI;
 
+    //Crafting
+    public GameObject CraftingUI;
+
     Inventory inventory;
     internal Treasure treasure;
+
+    public int UINumber = 0;
+
+    public StarterAssetsInputs playerInput;
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +44,48 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory"))
         {
-            UpdateUI();
-            background.SetActive(!background.activeSelf);
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
-            displayUI.SetActive(!displayUI.activeSelf);
-            CloseButton.SetActive(!CloseButton.activeSelf);        
+            TriggerInventory();
+        }
+
+        if (Input.GetButtonDown("Crafting")) {
+            TriggerCrafting();
+        }
+
+        if (UINumber > 0)
+        {
+            playerInput.cursorInputForLook = false;
+        }
+        else {
+            playerInput.cursorInputForLook = true;
+        }
+    }
+
+    public void TriggerInventory() {
+        UpdateUI();
+        background.SetActive(!background.activeSelf);
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        displayUI.SetActive(!displayUI.activeSelf);
+        CloseButton.SetActive(!CloseButton.activeSelf);
+        if (inventoryUI.activeSelf == true)
+        {
+            UINumber += 1;
+        }
+        else
+        {
+            UINumber -= 1;
+        }
+    }
+
+    public void TriggerCrafting()
+    {
+        CraftingUI.SetActive(!CraftingUI.activeSelf);
+        if (CraftingUI.activeSelf == true)
+        {
+            UINumber += 1;
+        }
+        else
+        {
+            UINumber -= 1;
         }
     }
 
@@ -51,6 +95,7 @@ public class InventoryUI : MonoBehaviour
         inventoryUI.SetActive(true);
         TreasureUI.SetActive(true);
         CloseButton.SetActive(true);
+        UINumber += 1;
     }
 
     public void TurnOffTreasure()
@@ -59,6 +104,7 @@ public class InventoryUI : MonoBehaviour
         inventoryUI.SetActive(false);
         TreasureUI.SetActive(false);
         CloseButton.SetActive(false);
+        UINumber -= 1;
     }
 
     void UpdateUI()

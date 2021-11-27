@@ -2277,9 +2277,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30dee32adcb38e24da7f1ef807f1d9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  replaceableAttackAnin: {fileID: -203655887218126122, guid: 1ded9a45b7f18054387a2ff1c6bac615,
+    type: 3}
   defaultAttackAnimSet:
-  - {fileID: 7400000, guid: 24ba34a576c0fac43ba52d084ba9b509, type: 3}
-  weaponAnimations: []
+  - {fileID: -203655887218126122, guid: 1ded9a45b7f18054387a2ff1c6bac615, type: 3}
+  overrideController: {fileID: 0}
+  weaponAnimations:
+  - weapon: {fileID: 11400000, guid: c18c6667df2a0f04db1e1f440c3fe176, type: 2}
+    clips:
+    - {fileID: -203655887218126122, guid: 2d9b08f4eadac2b459035e8abf962828, type: 3}
+  - weapon: {fileID: 11400000, guid: 0ea0a8340ad65894391ca788b86b1be9, type: 2}
+    clips:
+    - {fileID: 7400000, guid: b1c4a57ece73d404f9aebbd969b9be3a, type: 3}
 --- !u!1 &4767175505776034159
 GameObject:
   m_ObjectHideFlags: 0

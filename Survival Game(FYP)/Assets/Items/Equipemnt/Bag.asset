@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ecf2997ba7ba5cf40884a8522cde15cc, type: 3}
   isDefaultItem: 0
   isMany: 0
+  itemGameObject: {fileID: 0}
   decreaseRate: 0
   equipSlot: 8
   equipmentType: 0
