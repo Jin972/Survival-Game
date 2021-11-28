@@ -18,24 +18,30 @@ public class TreeController : CharaterStats
         notify = NotifySystem.instance;
     }
 
-    public void DropItem()
-    {
-        for (int i = 0; i < item.Length; i++)
-        {
-            GameObject droppedItem = (GameObject)Instantiate(item[i], transform.position, Quaternion.identity);
-        }
-    }
-
     public override void Die()
     {
         base.Die();
 
-        DropItem();
+        int totalWoodCollect = 0;
+
         Destroy(gameObject);
         for(int i = 0; i < items.Length; i++)
         {
-            inventory.Add(items[i]);
+            if(inventory.items.Count > inventory.space)
+            {
+                notify.SimpleNotify("Your inventoty capacity not enough.");
+                Instantiate(item[i], transform.position, Quaternion.identity);
+            }
+            else
+            {
+                inventory.Add(items[i]);
+                totalWoodCollect += 1;  
+            }   
         }
-        notify.SimpleNotify("+" + items.Length + " Wood");
+
+        if(totalWoodCollect > 0)
+        {
+            notify.SimpleNotify("+" + totalWoodCollect + " Wood");
+        }
     }
 }

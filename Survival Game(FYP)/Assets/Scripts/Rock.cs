@@ -12,6 +12,8 @@ public class Rock : Interactable
 
     NotifySystem notify;
 
+    InventoryUI ui;
+
     private void Start()
     {
         equipment = EquipmentManager.instance;
@@ -20,6 +22,7 @@ public class Rock : Interactable
         myStats = GetComponent<CharaterStats>();
         target = PlayerManager.instance.player.transform;
         playerStatus = playerManager.player.GetComponent<PlayerStat>();
+        ui = GameObject.FindWithTag("MainUI").GetComponent<InventoryUI>();
     }
 
 
@@ -28,7 +31,7 @@ public class Rock : Interactable
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance <= playerStatus.lookRadius)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && ui.UINumber <= 0)
             {
                 CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
                 if (playerCombat != null)
@@ -63,6 +66,8 @@ public class Rock : Interactable
             }
         }
     }
+
+
 
     public override void Interact()
     {

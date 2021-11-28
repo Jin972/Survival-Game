@@ -30,12 +30,25 @@ public class RockStatus : CharaterStats
     {
         base.Die();
 
-        DropItem();
+        int totalRockCollect = 0;
+
         Destroy(gameObject);
         for (int i = 0; i < items.Length; i++)
         {
-            inventory.Add(items[i]);
+            if (inventory.items.Count > inventory.space)
+            {
+                notify.SimpleNotify("Your inventoty capacity not enough.");
+                Instantiate(item[i], transform.position, Quaternion.identity);
+            }
+            else
+            {
+                inventory.Add(items[i]);
+                totalRockCollect += 1;
+            }
         }
-        notify.SimpleNotify( "+"+ items.Length +" Rock");
+        if (totalRockCollect > 0)
+        {
+            notify.SimpleNotify("+" + totalRockCollect + " Rock");
+        }
     }
 }

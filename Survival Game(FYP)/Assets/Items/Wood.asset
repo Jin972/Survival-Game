@@ -16,5 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b69b1ca52acfaed43b07c602653a71fd, type: 3}
   isDefaultItem: 0
   isMany: 1
-  itemGameObject: {fileID: 0}
+  itemGameObject: {fileID: 2062932840114713717, guid: a90be401ddf040f4bb8ab3e240a9568b,
+    type: 3}
   decreaseRate: 0

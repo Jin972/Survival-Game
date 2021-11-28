@@ -15,6 +15,9 @@ public class PlayerStat : CharaterStats
 
     public float thirst, hunger;
 
+    public delegate void OnCurrentHealthChanged(int maxHealth, int currentHealth);
+    public event OnCurrentHealthChanged onCurrentHealthChanged;
+
     public float lookRadius = 10f;
 
     private bool dead;
@@ -62,11 +65,6 @@ public class PlayerStat : CharaterStats
             Die();
             print("You have die because of hunger.");
         }
-
-        //if (isLoad == false)
-        //{
-        //    StartCoroutine(SaveData(5f));
-        //}
     }
 
     void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
@@ -115,6 +113,9 @@ public class PlayerStat : CharaterStats
 
         if (currentHealth >= 100)
             currentHealth = maxHealth;
+
+        if (onCurrentHealthChanged != null)
+            onCurrentHealthChanged.Invoke(maxHealth, currentHealth);
     }
 
     // Save Data by local file
@@ -209,10 +210,14 @@ public class PlayerStat : CharaterStats
         if(isLoad == false && SceneManager.GetActiveScene().buildIndex != 2) // Check current map is "Main"(Home) scene or not
         {
             float[] position = new float[3];
-            position[0] = transform.position.x;
-            position[1] = transform.position.y;
-            position[2] = transform.position.z;
-
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                
+                position[0] = transform.position.x;
+                position[1] = transform.position.y;
+                position[2] = transform.position.z;
+            }
+            
             float _thirst = Mathf.Round(thirst);
             float _hunger = Mathf.Round(hunger);
 
@@ -231,6 +236,10 @@ public class PlayerStat : CharaterStats
                 string json = db.LoadData("Player Status");
                 UserData data = JsonUtility.FromJson<UserData>(json);
                 currentHealth = data.health;
+
+                if (onCurrentHealthChanged != null)
+                    onCurrentHealthChanged.Invoke(maxHealth, currentHealth);
+
                 thirst = data.thirst;
                 hunger = data.hunger;
 

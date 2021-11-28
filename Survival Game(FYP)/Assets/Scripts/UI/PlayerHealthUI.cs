@@ -24,16 +24,32 @@ public class PlayerHealthUI : MonoBehaviour
         healthSlider = ui.transform.GetChild(0).GetComponent<Image>();
         player = playerManager.player.GetComponent<PlayerStat>();
         player.OnHealthChanged += OnHealthChanged;
+        player.onCurrentHealthChanged += onCurrentHealthChanged;
+
+        HealthUI(player.maxHealth, player.currentHealth);
     }
 
     void OnHealthChanged(int maxHealth, int currentHealth)
     {
         if (ui != null)
         {
-            playerName.text = player.gameObject.name;
-            currentHealthAmount.text = "" + currentHealth;
-            float healthPercent = (float)currentHealth / maxHealth;
-            healthSlider.fillAmount = healthPercent;
+            HealthUI(maxHealth, currentHealth);
         }
+    }
+
+    void onCurrentHealthChanged(int maxHealth, int currentHealth)
+    {
+        if (ui != null)
+        {
+            HealthUI(maxHealth, currentHealth);
+        }
+    }
+
+    void HealthUI(int maxHealth, int currentHealth)
+    {
+        playerName.text = player.gameObject.name;
+        currentHealthAmount.text = "" + currentHealth;
+        float healthPercent = (float)currentHealth / maxHealth;
+        healthSlider.fillAmount = healthPercent;
     }
 }

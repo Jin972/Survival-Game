@@ -120,7 +120,9 @@ MonoBehaviour:
     baseVale: 0
   attackRange:
     baseVale: 0
-  item: []
+  item:
+  - {fileID: 2062932840114713717, guid: a90be401ddf040f4bb8ab3e240a9568b, type: 3}
+  - {fileID: 2062932840114713717, guid: a90be401ddf040f4bb8ab3e240a9568b, type: 3}
   items:
   - {fileID: 11400000, guid: 2d5781cb1ff95904a9af30e2ae2c6fc4, type: 2}
   - {fileID: 11400000, guid: 2d5781cb1ff95904a9af30e2ae2c6fc4, type: 2}
@@ -148,7 +150,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.2981277, y: 8.527595, z: 0.2981277}
+  m_Extents: {x: 0.2, y: 8.5, z: 0.2}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1

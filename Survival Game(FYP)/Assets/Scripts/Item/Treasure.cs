@@ -5,16 +5,44 @@ using UnityEngine;
 public class Treasure : Interactable
 {
     public InventoryUI inventoryUI;
+
     public List<Item> items;
     [SerializeField]
     private float pikupRadius = 3f;
     Transform target;
     PickupUI ui;
 
+    [SerializeField]
+    PlayerStatistic database;
+
+    [SerializeField]
+    bool isBig;
+
     private void Start()
     {
         target = PlayerManager.instance.player.transform;
         ui = GetComponent<PickupUI>();
+        if(inventoryUI == null)
+        {
+            inventoryUI = GameObject.FindWithTag("MainUI").GetComponent<InventoryUI>();
+        }
+
+        int itemsAmount;
+        if (isBig)
+        {
+            itemsAmount = Random.Range(5, 7);
+
+        }
+        else
+        {
+            itemsAmount = Random.Range(3, 5);
+        }
+
+        for (int i = 0; i < itemsAmount; i++)
+        {
+            int itemIndex = Random.Range(0, database.inventory.Count);
+            items.Add(database.inventory[itemIndex]);
+        }
     }
 
     void LateUpdate()
@@ -33,10 +61,9 @@ public class Treasure : Interactable
             ui.DisableAnimator();
         }
 
-        if (items == null)
+        if (items.Count <= 0)
         {
-            StartCoroutine(WaitToDisappear(60f));
-            Destroy(gameObject);
+            StartCoroutine(WaitToDisappear(60f)); 
         }
 
     }
@@ -44,6 +71,7 @@ public class Treasure : Interactable
     IEnumerator WaitToDisappear(float second)
     {
         yield return new WaitForSeconds(second);
+        Destroy(gameObject);
     }
 
     public override void Interact()

@@ -8,8 +8,13 @@ public class ItemPickup : Interactable
     Transform target;
     PickupUI ui;
 
+    Inventory inventory;
+    NotifySystem notify;
+
     private void Start()
     {
+        inventory = Inventory.instance;
+        notify = NotifySystem.instance;
         target = PlayerManager.instance.player.transform;
         ui = GetComponent<PickupUI>();
     }
@@ -36,15 +41,17 @@ public class ItemPickup : Interactable
     {
         Debug.Log("Picking up item " + item.name);
         //Add to inventory
-        Inventory.instance.Add(item);
-        ui.DisableAnimator();
-        Destroy(gameObject);
+        if(inventory.items.Count < inventory.space)
+        {
+            inventory.Add(item);
+            ui.DisableAnimator();
+            Destroy(gameObject);
+        }
+        else
+        {
+            notify.SimpleNotify("Your inventoty capacity not enough.");
+        }
+        
     }
-
-    //public override void Interact()
-    //{
-    //    base.Interact();
-    //    PickUp();
-    //}
 
 }

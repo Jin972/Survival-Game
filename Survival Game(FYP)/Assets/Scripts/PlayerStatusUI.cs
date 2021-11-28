@@ -47,16 +47,28 @@ public class PlayerStatusUI : MonoBehaviour
 
         thirdPlayer = playerManager.player.GetComponent<ThirdPersonController>();
 
-        player.Load();
         player.OnHealthChanged += OnHealthChanged;
+        player.onCurrentHealthChanged += onCurrentHealthChanged;
+
+        playerName.text = player.gameObject.name;
+        currentHealthAmount.text = "" + player.currentHealth;
+        float healthPercent = (float)player.currentHealth / player.maxHealth;
+        healthSlider.fillAmount = healthPercent;
     }
 
     void OnHealthChanged(int maxHealth, int currentHealth)
     {
-            playerName.text = player.gameObject.name;
-            currentHealthAmount.text = "" + currentHealth;
-            float healthPercent = (float)currentHealth / maxHealth;
-            healthSlider.fillAmount = healthPercent;
+        
+        currentHealthAmount.text = "" + currentHealth;
+        float healthPercent = (float)currentHealth / maxHealth;
+        healthSlider.fillAmount = healthPercent;
+    }
+
+    void onCurrentHealthChanged(int maxHealth, int currentHealth)
+    {
+        currentHealthAmount.text = "" + currentHealth;
+        float healthPercent = (float)currentHealth / maxHealth;
+        healthSlider.fillAmount = healthPercent;
     }
 
     private void Update()

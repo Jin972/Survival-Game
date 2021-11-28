@@ -175,6 +175,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadingScreen: {fileID: 6495775644520277867, guid: e2ad059b36f84f04e9ed2824ce169666,
     type: 3}
+  introduction:
+  - title: Building Guide
+    content: Press <b>"M"</b> to open <b>Building Menu</b>. Righ click to confirm
+      create building object.
+  - title: Pickup Guide
+    content: Press "F" to pickup item or open treasure box
+  - title: ' Area Tip'
+    content: Becarefull with areas have the red icon backgroud
 --- !u!114 &6896836967166513498
 MonoBehaviour:
   m_ObjectHideFlags: 0

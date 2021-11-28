@@ -21,6 +21,4 @@ public class EnemyStat : CharaterStats
         DropItem();
         Destroy(gameObject);
     }
-
-   
 }

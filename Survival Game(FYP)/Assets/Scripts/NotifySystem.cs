@@ -113,6 +113,10 @@ public class NotifySystem : MonoBehaviour
             if (ui != null)
             {
                 ui.UINumber -= 1;
+                if (ui.UINumber < 0)
+                {
+                    ui.UINumber = 0;
+                }
             }
         }
     }
@@ -125,6 +129,10 @@ public class NotifySystem : MonoBehaviour
         if (ui != null)
         {
             ui.UINumber -= 1;
+            if (ui.UINumber < 0)
+            {
+                ui.UINumber = 0;
+            }
         }
     }
 }

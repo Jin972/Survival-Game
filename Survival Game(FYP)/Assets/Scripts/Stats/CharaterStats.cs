@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 public class CharaterStats : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class CharaterStats : MonoBehaviour
     public Stat armor;
     public Stat attackRange;
 
-    public event System.Action<int, int> OnHealthChanged;
+    public event Action<int, int> OnHealthChanged;
 
     public virtual void Awake()
     {

@@ -12,6 +12,8 @@ public class Tree : Interactable
 
     NotifySystem notify;
 
+    InventoryUI ui;
+
     private void Start()
     {
         equipment = EquipmentManager.instance;
@@ -20,6 +22,7 @@ public class Tree : Interactable
         myStats = GetComponent<CharaterStats>();
         target = PlayerManager.instance.player.transform;
         playerStatus = playerManager.player.GetComponent<PlayerStat>();
+        ui = GameObject.FindWithTag("MainUI").GetComponent<InventoryUI>();
     }
 
 
@@ -28,33 +31,11 @@ public class Tree : Interactable
         float distance = Vector3.Distance(target.position, transform.position);
         if (distance <= playerStatus.lookRadius)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && ui.UINumber <= 0)
             {
                 CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
                 if (playerCombat != null)
                 {
-                    //foreach (ListEquipment item in equipment.currentEquipment)
-                    //{
-                    //    if (item != null )
-                    //    {
-                    //        if(item.item != null && item.item.equipmentType == EquipmentType.Axe)
-                    //        {
-                    //            playerCombat.Attack(myStats);
-                    //            Debug.Log("Player cutting down.");
-                    //        }
-                    //        else
-                    //        {
-                    //            notify.SimpleNotify("You need a axe to cut down.");
-                    //            Debug.Log("You need a axe to cut down.");
-                    //        }   
-                    //    }
-                    //    else
-                    //    {
-                    //        string text = "You need a axe to cut down.";
-                    //        notify.SimpleNotify(text);
-                    //        Debug.Log("You need a axe to cut down.");
-                    //    }
-                    //}
                     var temp = equipment.currentEquipment;
                     for (int i = 0; i < temp.Length; i++)
                     {

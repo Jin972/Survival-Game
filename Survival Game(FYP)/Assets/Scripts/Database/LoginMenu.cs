@@ -291,7 +291,15 @@ public class LoginMenu : MonoBehaviour
     public void Start_Button()
     {
         ResetAllUIElement();
-        loadSence.LoadLevel(1);
+        if (RealTimeDatabase.IsLogin)
+        {
+            loadSence.LoadLevel(1);
+        }
+        else
+        {
+            part = 0;
+        }
+        
     }
 
     public void ResetAllUIElement()

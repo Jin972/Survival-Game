@@ -118,7 +118,9 @@ MonoBehaviour:
     baseVale: 0
   attackRange:
     baseVale: 0
-  item: []
+  item:
+  - {fileID: 3423125554282033090, guid: f9e0f166a66d67842a41a0de45aa6c52, type: 3}
+  - {fileID: 3423125554282033090, guid: f9e0f166a66d67842a41a0de45aa6c52, type: 3}
   items:
   - {fileID: 11400000, guid: 298eb55f7fb2e7949883b3881f691fbb, type: 2}
   - {fileID: 11400000, guid: 298eb55f7fb2e7949883b3881f691fbb, type: 2}

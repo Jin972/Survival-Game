@@ -24,9 +24,16 @@ public class LoadSence : MonoBehaviour
     [SerializeField]
     private GameObject LoadingScreen;
 
+    [SerializeField]
+    [Tooltip("Content will display in Loading Screen")]
+    private List<LoadingIntro> introduction;
+
     private Slider slider;
 
     private Text progressText;
+    Text titleText;
+    Text contentText;
+
     Transform ui;
 
     public int currentIndex {get; set; }
@@ -34,8 +41,20 @@ public class LoadSence : MonoBehaviour
     private void Start()
     {
         slider = LoadingScreen.GetComponentInChildren<Slider>();
-        progressText = LoadingScreen.GetComponentInChildren<Text>();
-        
+        progressText = LoadingScreen.transform.Find("PercentTxt").GetComponent<Text>();
+        titleText = LoadingScreen.transform.Find("Title").GetComponent<Text>();
+        contentText = LoadingScreen.transform.Find("Content").GetComponent<Text>();
+        if(introduction.Count > 0)
+        {
+            int introIndex = Random.Range(0, introduction.Count);
+            titleText.text = introduction[introIndex].title;
+            contentText.text = introduction[introIndex].content;
+        }
+        else
+        {
+            titleText.text = "Movement";
+            contentText.text = "Press <b>WASD<b> button to control character and use mouse to to adjust the viewing angle";
+        }
     }
 
     void LateUpdate()
@@ -68,4 +87,11 @@ public class LoadSence : MonoBehaviour
             yield return null;
         }
     }
+}
+
+[System.Serializable]
+public class LoadingIntro
+{
+    public string title;
+    public string content;
 }

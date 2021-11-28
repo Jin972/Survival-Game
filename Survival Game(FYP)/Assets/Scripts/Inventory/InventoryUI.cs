@@ -91,20 +91,23 @@ public class InventoryUI : MonoBehaviour
 
     public void TurnOnTreasure()
     {
-        background.SetActive(true);
-        inventoryUI.SetActive(true);
-        TreasureUI.SetActive(true);
-        CloseButton.SetActive(true);
-        UINumber += 1;
+        if(TreasureUI.activeSelf == false)
+        {
+            background.SetActive(true);
+            inventoryUI.SetActive(true);
+            TreasureUI.SetActive(true);
+            CloseButton.SetActive(true);
+            UINumber += 1;
+        }
     }
 
     public void TurnOffTreasure()
     {
-        background.SetActive(false);
-        inventoryUI.SetActive(false);
-        TreasureUI.SetActive(false);
-        CloseButton.SetActive(false);
-        UINumber -= 1;
+            background.SetActive(false);
+            inventoryUI.SetActive(false);
+            TreasureUI.SetActive(false);
+            CloseButton.SetActive(false);
+            UINumber -= 1;  
     }
 
     void UpdateUI()

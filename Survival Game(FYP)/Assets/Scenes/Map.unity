@@ -763,7 +763,7 @@ MonoBehaviour:
   iconParent: {fileID: 268749216}
   btnParent: {fileID: 109464611}
   currentLocalParent: {fileID: 625937384}
-  mapIndex: 1
+  mapIndex: 5
   currentMap: 1
   dangerousLevel: 1
   iconMain: {fileID: 21300000, guid: d79edf6777b9b064db337318257d1b9e, type: 3}
@@ -3056,7 +3056,7 @@ MonoBehaviour:
   iconParent: {fileID: 268749216}
   btnParent: {fileID: 109464611}
   currentLocalParent: {fileID: 1197627157}
-  mapIndex: 1
+  mapIndex: 4
   currentMap: 1
   dangerousLevel: 1
   iconMain: {fileID: 21300000, guid: d79edf6777b9b064db337318257d1b9e, type: 3}
@@ -5089,7 +5089,7 @@ MonoBehaviour:
   iconParent: {fileID: 268749216}
   btnParent: {fileID: 109464611}
   currentLocalParent: {fileID: 297571831}
-  mapIndex: 1
+  mapIndex: 6
   currentMap: 1
   dangerousLevel: 2
   iconMain: {fileID: 21300000, guid: d79edf6777b9b064db337318257d1b9e, type: 3}

@@ -17,15 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MilitaryBase.unity
     guid: b06dad870dfae1a41b0c28cb6777f9ad
-  - enabled: 0
-    path: Assets/Scenes/Forest1.unity
-    guid: 604e88b2946c0ad44b4480a413987eec
-  - enabled: 0
-    path: Assets/Scenes/Forest2.unity
-    guid: 073a832701e90a5499f74262d6cb14cf
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/RockForest.unity
-    guid: a52f1fb72ea01154caa50d568b6eb2e8
+    guid: 945878e6adfe07545a1460f7d4899901
+  - enabled: 1
+    path: Assets/Scenes/Forest1.unity
+    guid: 94c1edb89d99b6a478e303cd0245af1e
+  - enabled: 1
+    path: Assets/Scenes/Forest2.unity
+    guid: 25bd763b96d5f3e4893b1a31dd2396f7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c42dd22ed04ff664a8c0c9dfa28925e3,
       type: 2}
