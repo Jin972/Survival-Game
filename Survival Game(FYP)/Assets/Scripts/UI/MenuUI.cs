@@ -53,7 +53,7 @@ public class MenuUI : MonoBehaviour
         ui.UINumber -= 1;
     }
 
-    private void Pause()
+    public void Pause()
     {
         pauseMenuUI.SetActive(true);
         GameIsPaused = true;

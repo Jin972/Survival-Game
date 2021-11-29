@@ -6567,6 +6567,18 @@ PrefabInstance:
       objectReference: {fileID: 288577506}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4467639f966f1f49a5dd62d094e1761, type: 3}
+--- !u!114 &158414563519572145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 158414563786312559, guid: e4467639f966f1f49a5dd62d094e1761,
+    type: 3}
+  m_PrefabInstance: {fileID: 158414563519572144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9041cbeb36d636a409c3ca79455a98eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &932696085701447120
 Transform:
   m_ObjectHideFlags: 0
@@ -7299,6 +7311,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 778897985, guid: 6156fee60ba14c04ab8ed8b670440c19, type: 3}
+      propertyPath: menu
+      value: 
+      objectReference: {fileID: 158414563519572145}
     - target: {fileID: 897590782, guid: 6156fee60ba14c04ab8ed8b670440c19, type: 3}
       propertyPath: itemCraftingList.Array.size
       value: 10

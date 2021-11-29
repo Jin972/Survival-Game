@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
@@ -22,6 +23,12 @@ public class InventoryUI : MonoBehaviour
     //Crafting
     public GameObject CraftingUI;
 
+    //Setting
+    public GameObject SettingUI;
+
+    //Guide
+    public GameObject guideUI;
+
     Inventory inventory;
     internal Treasure treasure;
 
@@ -37,6 +44,11 @@ public class InventoryUI : MonoBehaviour
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
         treasueSlots = TreasureSlotGroup.GetComponentsInChildren<TreasureSlot>();
+
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Guild();
+        }
     }
 
     // Update is called once per frame
@@ -51,12 +63,54 @@ public class InventoryUI : MonoBehaviour
             TriggerCrafting();
         }
 
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            TriggerSetting();
+        }
+
         if (UINumber > 0)
         {
+            Cursor.lockState = CursorLockMode.None;
             playerInput.cursorInputForLook = false;
         }
         else {
+            Cursor.lockState = CursorLockMode.Locked;
             playerInput.cursorInputForLook = true;
+        }
+
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    public void Guild()
+    {
+        guideUI.SetActive(!guideUI.activeSelf);
+        if (guideUI.activeSelf == true)
+        {
+            UINumber += 1;
+        }
+        else
+        {
+            UINumber -= 1;
+            if(UINumber < 0)
+            {
+                UINumber = 0;
+            }
+        }
+    }
+
+    public void TriggerSetting()
+    {
+        SettingUI.SetActive(!SettingUI.activeSelf);
+        if (SettingUI.activeSelf == true)
+        {
+            UINumber += 1;
+        }
+        else
+        {
+            UINumber -= 1;
         }
     }
 

@@ -60,6 +60,7 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
     RealTimeDatabase db;
 
     bool IsLoad = false;
+    bool isShow = false;
 
     private void Start()
     {
@@ -185,6 +186,12 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
         //}
         #endregion
 
+        if (!isShow)
+        {
+            ui.UINumber += 1;
+            isShow = true;
+        }
+
         currentPos = _hit.point;
         currentPos -= Vector3.one * offset;
         currentPos /= gridSize;
@@ -206,6 +213,11 @@ public class BuildingSystem : MonoBehaviour, ISerializationCallbackReceiver
         {
             Destroy(currentPreview.gameObject);
             currentPreview = null;
+            if (isShow)
+            {
+                ui.UINumber -= 1;
+                isShow = false;
+            }
         } 
     }
 
